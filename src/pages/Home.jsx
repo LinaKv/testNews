@@ -2,15 +2,13 @@ import React, { useEffect } from "react";
 import Post from "../components/Post/Post";
 import "./Home.scss";
 import useGetFirstMessages from "../hooks/useGetFirstMessages";
-import { useState, useRef } from "react";
+import { useState } from "react";
 import axios from "axios";
 
 function Home() {
   const [isNewMessagesBelow, setNewMessagesBelow] = useState(true);
   const [oldMessages, setOldMessages] = useState([]);
   const messages = useGetFirstMessages();
-  // const messagesReverse = messages.slice().reverse();
-  const pageRef = useRef(null);
 
   function renderPost(message, index) {
     const favoriteItemsJSON = localStorage.getItem("favoriteItems");
@@ -43,8 +41,6 @@ function Home() {
   }
 
   useEffect(() => {
-    const page = pageRef.current;
-
     function handleScroll() {
       const scrollHeight = document.documentElement.scrollHeight;
 
@@ -54,7 +50,6 @@ function Home() {
 
       const isAtEnd = scrollTop + windowHeight >= scrollHeight;
       if (isAtEnd && !isNewMessagesBelow) {
-        const lastElement = page.lastElementChild;
         fetchOldMessages();
       }
     }
@@ -66,10 +61,7 @@ function Home() {
   }, [isNewMessagesBelow]);
 
   return (
-    <div
-      className='postsline'
-      ref={pageRef}
-    >
+    <div className='postsline'>
       <div className='buttonToFilterPost'>
         Сейчас новые посты отображаются {isNewMessagesBelow ? "в конце" : "в начале"} ленты
         <button onClick={() => setNewMessagesBelow((prev) => !prev)}>Изменить</button>
