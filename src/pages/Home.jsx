@@ -2,12 +2,12 @@ import React, { useEffect } from "react";
 import Post from "../components/Post";
 import "./Home.scss";
 import useGetFirstMessages from "../hooks/useGetFirstMessages";
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 function Home() {
   const [isNewMessagesBelow, setNewMessagesBelow] = useState(true);
   const messages = useGetFirstMessages();
-  const messagesReverse = messages.reverse();
+  const messagesReverse = messages.slice().reverse();
 
   return (
     <div className='postsline'>

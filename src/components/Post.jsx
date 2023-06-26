@@ -1,22 +1,44 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Post.scss";
 import { ReactComponent as Avatar } from "../attachments/avatar.svg";
 import { ReactComponent as Arrow } from "../attachments/arrow.svg";
 import { ReactComponent as Fav } from "../attachments/fav.svg";
+import { ReactComponent as FavCh } from "../attachments/favCh.svg";
 import { ReactComponent as Settings } from "../attachments/settings.svg";
+
 import { ReactComponent as Window } from "../attachments/window.svg";
 import { useState } from "react";
 
 function Post({ message }) {
   const [isShortenedVersion, setIsShortenedVersion] = useState(true);
+  const [isFavorite, setIsFavorite] = useState(false);
 
   const { author, content, channel, id, date, attachments } = message;
 
   const [years, time] = date.split(" ");
   const [hours, minutes, seconds] = time.split(":");
 
+  useEffect(() => {
+    const favorite = localStorage.getItem(id);
+    if (favorite) {
+      setIsFavorite(true);
+    }
+  }, []);
+
+  function addToFavorite() {
+    setIsFavorite((prev) => !prev);
+    if (!isFavorite) {
+      localStorage.setItem(id, id);
+    } else {
+      localStorage.removeItem(id, id);
+    }
+  }
+
   return (
-    <div className='post'>
+    <div
+      className='post'
+      id={id}
+    >
       <div className='avatar'>
         <Avatar />
         <div className='time'>
@@ -34,7 +56,17 @@ function Post({ message }) {
             <Arrow />
             <Window />
             <Settings className='settings' />
-            <Fav className='fav' />
+            {isFavorite ? (
+              <FavCh
+                className='fav'
+                onClick={addToFavorite}
+              />
+            ) : (
+              <Fav
+                className='fav'
+                onClick={addToFavorite}
+              />
+            )}
           </div>
         </div>
         <div className='text'>
