@@ -1,70 +1,33 @@
-# Getting Started with Create React App
+Необходимо реализовать функционал ленты сообщений. Макет компонента сообщения доступен в фигме тут.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Тестовый бек:
 
-## Available Scripts
+URL http://a0830433.xsph.ru/
+Тип запроса- POST
+Формат данных: form-data
+обязательный параметр:
+actionName. значение: MessagesLoad
+Изображение/видео нужно брать из поля attachments.
 
-In the project directory, you can run:
+ВЕСЬ набор тестовых данных состоит из 20 сообщений.
+набор старых сообщений идентичен стартовому набору
+новые сообщения - рандомные из базового набора
 
-### `npm start`
+для получения первых 20-ти сообщений передавать параметр messageId со значением 0.
+для получения новых сообщений передавать в этом параметре id последнего сообщения.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+для получения предыдущих сообщений передавать параметр oldMessages со значением true
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+После загрузки приложения надо получить "последние" 20 сообщений делать запрос на бек. Каждые 5 секунд делать запрос на бек, чтобы проверять наличие "новых" сообщений и добавлять их в ленту.
 
-### `npm test`
+UPD от 17.06.2023 - над старым сообщением сделать кнопку ЗАГРУЗИТЬ ПРЕДЫДУЩИЕ
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- получить по ней старые сообщений. Лучше без кнопки - по скролу подгружать старые
 
-### `npm run build`
+Дополнительно:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. Добавить функционал для добавления сообщения в избранное, у избранного сообщения кнопка-звездочка должна гореть. После перезагрузки страницы состояние должно сохраняться.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+2.По умолчанию самое новое сообщение должно находиться снизу. Реализовать функционал для управления порядком сообщений (новой появляется сверху/новое появляется снизу).
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Желательно использовать функциональные компоненты.

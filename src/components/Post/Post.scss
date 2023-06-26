@@ -1,4 +1,4 @@
-@import "../var";
+@import "../../var";
 
 .post {
   //   background-color: red;
@@ -9,7 +9,7 @@
   width: 886px;
   padding: 10px;
   gap: 20px;
-  border: 0.5px $mainGrayColor solid;
+  border: 0.5px $textActiveColor solid;
 }
 
 .avatar {
@@ -60,7 +60,7 @@
     .settings:hover {
       // background-color: $textActiveColor;
       // color: white;
-      background-image: url(../attachments/settingsHover.svg);
+      background-image: url(../../attachments/settingsHover.svg);
       background-size: 20px 20px;
     }
 
@@ -94,6 +94,21 @@
 
   video {
     max-width: 500px;
+  }
+
+  .hesh {
+    font-size: 12px;
+    color: $textNoActiveColor;
+    display: flex;
+    gap: 10px;
+  }
+
+  .hesh:hover > * {
+    cursor: pointer;
+  }
+
+  .hesh:hover > p:hover {
+    color: $textActiveColor;
   }
 }
 

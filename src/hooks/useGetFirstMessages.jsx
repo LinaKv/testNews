@@ -4,6 +4,7 @@ import axios from "axios";
 
 function useGetFirstMessages() {
   const [messages, setMessages] = useState([]);
+  const [work, setWork] = useState();
 
   async function fetchMessages(index) {
     try {
@@ -17,6 +18,7 @@ function useGetFirstMessages() {
 
       if (index === 0) {
         setMessages(data.Messages);
+        setWork(true);
       } else if (data.Messages) {
         setMessages((prev) => [...prev, ...data.Messages]);
       }
@@ -27,15 +29,19 @@ function useGetFirstMessages() {
 
   useEffect(() => {
     fetchMessages(0);
-
-    // const int = setInterval(() => {
-    //   fetchMessages(messages[messages.length - 1].id);
-    // }, 2000);
-
-    // return () => {
-    //   clearInterval(int);
-    // };
   }, []);
+
+  useEffect(() => {
+    const int = setInterval(() => {
+      if (messages[messages.length - 1]) {
+        fetchMessages(messages[messages.length - 1].id);
+      }
+    }, 2000);
+
+    return () => {
+      clearInterval(int);
+    };
+  }, [messages]);
 
   return messages;
 }
