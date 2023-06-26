@@ -1,0 +1,94 @@
+@import "../var";
+
+.post {
+  //   background-color: red;
+  min-height: 315px;
+  max-height: max-content;
+  display: flex;
+  justify-content: flex-start;
+  width: 886px;
+  padding: 10px;
+  gap: 20px;
+  border: 0.5px $mainGrayColor solid;
+}
+
+.avatar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  .time {
+    font-size: 14px;
+    line-height: 9.2px;
+    color: $mainGrayColor;
+  }
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  flex-grow: 80;
+
+  .user {
+    display: flex;
+    justify-content: space-between;
+    line-height: 13.3px;
+
+    .userInfo {
+      display: flex;
+      flex-direction: column;
+      color: $mainGrayColor;
+      gap: 5px;
+
+      .channel {
+        font-style: italic;
+      }
+    }
+
+    .icons {
+      display: flex;
+      gap: 7px;
+      align-items: center;
+    }
+
+    .icons:hover > * {
+      cursor: pointer;
+    }
+  }
+
+  .text {
+    color: $mainDarkColor;
+    line-height: 21.6px;
+    letter-spacing: -0.56px;
+  }
+
+  .textOfPostShortenedVersion {
+    max-height: 65px;
+    overflow: hidden;
+    transition: max-height 0.3s;
+  }
+
+  .textOfPostFullVersion {
+    height: max-content;
+    max-height: 500px;
+    overflow: visible;
+    transition: max-height 1s;
+  }
+
+  img {
+    max-width: 259px;
+  }
+
+  video {
+    max-width: 500px;
+  }
+}
+
+.showMore {
+  all: unset;
+  cursor: pointer;
+  font-size: 12px;
+  line-height: 9.8px;
+  color: $mainGrayColor;
+}
